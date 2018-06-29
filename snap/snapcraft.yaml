@@ -1,0 +1,28 @@
+name: fa-fw-update
+version: 'git'
+version-script: |
+  git describe
+summary: Firmware update utility for Fractal Audio devices
+description: |
+  Firmware update utility for Fractal Audio devices such as the Axe-Fx II/III
+
+grade: devel
+confinement: classic
+
+apps:
+  fa-fw-update:
+    command: bin/fa-fw-update
+    plugs: [alsa]
+
+parts:
+  fa-fw-update:
+    plugin: cmake
+    build-packages:
+    - build-essential
+    - libasound2-dev
+    stage-packages:
+    - libasound2
+    source: .
+    configflags:
+    - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    - -DCMAKE_INSTALL_PREFIX=/
