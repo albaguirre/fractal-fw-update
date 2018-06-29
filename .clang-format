@@ -1,0 +1,8 @@
+BasedOnStyle: Chromium
+Language: Cpp
+IndentWidth: 4
+BreakBeforeBraces: Allman
+AccessModifierOffset: -4
+Cpp11BracedListStyle: true
+Standard: Cpp11
+ColumnLimit: 100
