@@ -165,7 +165,7 @@ std::ostream& operator<<(std::ostream& os, const SysexMessage& msg)
 class File
 {
 public:
-    File(const std::string& name) : fp{std::fopen(name.c_str(), "r"), std::fclose}
+    explicit File(const std::string& name) : fp{std::fopen(name.c_str(), "r"), std::fclose}
     {
         if (fp == nullptr)
             throw std::runtime_error("failed to open file " + name);
@@ -192,7 +192,7 @@ private:
 class SysexFile
 {
 public:
-    SysexFile(const File& file) : data{file.read_all()}
+    explicit SysexFile(const File& file) : data{file.read_all()}
     {
         auto it = data.begin();
         while (it != data.end())
@@ -223,7 +223,7 @@ struct SndRawMidiDeleter
 class RawMidiIO
 {
 public:
-    RawMidiIO(const std::string& port_name) : input{nullptr}, output{nullptr}
+    explicit RawMidiIO(const std::string& port_name) : input{nullptr}, output{nullptr}, st{nullptr}
     {
         snd_rawmidi_t* in{nullptr};
         snd_rawmidi_t* out{nullptr};
